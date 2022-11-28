@@ -1,39 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fbutton="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#A8CCD6"
-    android:scrollbars = "vertical">
+    android:background="@drawable/background"
+    android:scrollbars="vertical">
 
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextVie " />
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="TextVie "
+        fbutton:layout_constraintBottom_toTopOf="@+id/button4"
+        fbutton:layout_constraintEnd_toEndOf="parent"
+        fbutton:layout_constraintStart_toStartOf="parent"
+        fbutton:layout_constraintTop_toTopOf="parent" />
 
     <!--<info.hoang8f.widget.FButton-->
-        <!--android:id="@+id/button4"-->
-        <!--android:layout_width="270dp"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:gravity="center"-->
-        <!--android:text="清空历史"-->
-        <!--fbutton:buttonColor="@color/colorPrimary"-->
-        <!--fbutton:cornerRadius="5dp"-->
-        <!--fbutton:shadowColor="@color/colorPrimaryDark"-->
-        <!--fbutton:shadowEnabled="true"-->
-        <!--fbutton:shadowHeight="5dp" />-->
+    <!--android:id="@+id/button4"-->
+    <!--android:layout_width="270dp"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_gravity="center"-->
+    <!--android:gravity="center"-->
+    <!--android:text="清空历史"-->
+    <!--fbutton:buttonColor="@color/colorPrimary"-->
+    <!--fbutton:cornerRadius="5dp"-->
+    <!--fbutton:shadowColor="@color/colorPrimaryDark"-->
+    <!--fbutton:shadowEnabled="true"-->
+    <!--fbutton:shadowHeight="5dp" />-->
 
     <Button
         android:id="@+id/button4"
-        android:layout_width="330dp"
-        android:layout_height="63dp"
-        android:layout_gravity="center"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="8dp"
         android:gravity="center"
-        android:text="清空历史" />
-</LinearLayout>
+        android:text="清空历史"
+        fbutton:layout_constraintBottom_toBottomOf="parent"
+        fbutton:layout_constraintEnd_toEndOf="parent"
+        fbutton:layout_constraintStart_toStartOf="parent" />
+</android.support.constraint.ConstraintLayout>

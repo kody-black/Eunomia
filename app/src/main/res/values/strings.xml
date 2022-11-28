@@ -3,5 +3,9 @@
     <string name="baek">100%</string>
     <string name="results">查看结果</string>
     <string name="num">%1$d %%</string>
-    <string name="botton2">查看应用的权限"</string>
+    <string name="get_app_pri">查看应用权限</string>
+    <string name="get_log">权限使用记录</string>
+    <string name="help">帮助</string>
+    <string name="about">关于</string>
+    <string name="halt">拦截日志</string>
 </resources>

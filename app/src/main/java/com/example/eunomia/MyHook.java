@@ -6,14 +6,11 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.view.ContextThemeWrapper;
-import android.widget.Toast;
-
 import de.robv.android.xposed.*;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
-
 import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
 
-public class Tuto implements IXposedHookLoadPackage {
+public class MyHook implements IXposedHookLoadPackage {
     private Context context=null;
 
     public static synchronized String getAppName(Context context) {

@@ -1,7 +1,9 @@
 package com.example.eunomia;
 
 import java.util.ArrayList;
+
 import com.example.eunomia.MainActivity.PInfo;
+
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.support.v4.app.Fragment;
@@ -14,10 +16,9 @@ import android.os.Bundle;
 import android.view.Window;
 
 
-public class Result extends FragmentActivity implements ActionBar.TabListener{
+public class Result extends FragmentActivity implements ActionBar.TabListener {
 
     private ViewPager mViewPager;
-    private PagerAdapter mPagerAdapter;
     private String title;
     public ArrayList<PInfo> lista;
     public ArrayList<PInfo> can_cost_money_obj;
@@ -27,11 +28,12 @@ public class Result extends FragmentActivity implements ActionBar.TabListener{
     public ArrayList<PInfo> can_see_location_info_obj;
     public ArrayList<PInfo> can_camera_audio_obj;
     public ArrayList<PInfo> has_majority;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-       // getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
+        // getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         setContentView(R.layout.result);
 
 
@@ -42,18 +44,20 @@ public class Result extends FragmentActivity implements ActionBar.TabListener{
         can_see_location_info_obj = getIntent().getParcelableArrayListExtra("can_see_location_info_obj");
         can_camera_audio_obj = getIntent().getParcelableArrayListExtra("can_camera_audio_obj");
         has_majority = getIntent().getParcelableArrayListExtra("has_majority");
-        mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
+        PagerAdapter mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
 
-//          参照https://www.jianshu.com/p/d29c960c8d00
+        //参照https://www.jianshu.com/p/d29c960c8d00
 
-            final ActionBar actionBar = getActionBar();
-            //actionBar.setHomeButtonEnabled(true);
-            actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        final ActionBar actionBar = getActionBar();
+        //actionBar.setHomeButtonEnabled(true);
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
 
         mViewPager = findViewById(R.id.pager);
         mViewPager.setAdapter(mPagerAdapter);
-//viewpager参照https://www.cnblogs.com/kexing/p/8400929.html
+
+        //viewpager
+        // 参照https://www.cnblogs.com/kexing/p/8400929.html
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int i, float v, int i1) {
@@ -80,6 +84,7 @@ public class Result extends FragmentActivity implements ActionBar.TabListener{
         }
         //actionBar.addTab(actionBar.newTab().setText("Summary").setTabListener(this));
     }
+
     @Override
     public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
     }
@@ -108,10 +113,10 @@ public class Result extends FragmentActivity implements ActionBar.TabListener{
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    lista=can_camera_audio_obj;
+                    lista = can_camera_audio_obj;
                     break;
                 case 1:
-                    lista=can_see_location_info_obj;
+                    lista = can_see_location_info_obj;
                     break;
                 case 2:
                     lista = can_see_personal_info_obj;
@@ -132,9 +137,9 @@ public class Result extends FragmentActivity implements ActionBar.TabListener{
                     break;
             }
 
-            ScreenSlidePageFragment myfrag =  new ScreenSlidePageFragment();  //自定义的碎片
+            ScreenSlidePageFragment myfrag = new ScreenSlidePageFragment();  //自定义的碎片
             Bundle bundle = new Bundle();
-            bundle.putSerializable("list",lista);
+            bundle.putSerializable("list", lista);
             myfrag.setArguments(bundle);
             return myfrag;
         }
@@ -145,7 +150,7 @@ public class Result extends FragmentActivity implements ActionBar.TabListener{
         }
 
         public CharSequence getPageTitle(int position) {
-            switch(position){
+            switch (position) {
                 case 0:
                     title = "拍照录音";
                     break;
