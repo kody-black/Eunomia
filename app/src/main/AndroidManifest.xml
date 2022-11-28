@@ -9,9 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         >
-        <activity android:name="com.example.eunomia.Result"></activity>
-        <activity android:name="com.example.eunomia.Logs"></activity>
-        <activity android:name="com.example.eunomia.MainActivity">
+        <activity android:name=".Result"></activity>
+        <activity android:name=".Logs"></activity>
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
         <receiver
-            android:name="com.example.eunomia.MyReceiver"
+            android:name=".MyReceiver"
             android:enabled="true"
             android:exported="true">
             <intent-filter>

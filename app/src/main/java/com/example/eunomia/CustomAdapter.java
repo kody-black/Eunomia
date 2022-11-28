@@ -5,15 +5,17 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.net.ParseException;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
-//import com.example.android_security.MainActivity;
-//import com.example.android_security.R;
+//import com.example.eunomia.MainActivity;
+//import com.example.eunomia.R;
 
 import java.util.ArrayList;
 

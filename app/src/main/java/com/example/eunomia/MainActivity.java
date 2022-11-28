@@ -55,7 +55,7 @@ public class MainActivity extends Activity implements OnClickListener{
                 // This method will be executed once the timer is over
                 // Start your app main activity
                 setContentView(R.layout.activity_main);
-                Button b = findViewById(R.id.button2);
+                Button b = (Button) findViewById(R.id.button2);
                 Button c = findViewById(R.id.button3);
                 b.setOnClickListener(something);
                 c.setOnClickListener(something);
