@@ -79,57 +79,90 @@ public class MyHook implements IXposedHookLoadPackage {
                     }
                 }
         );
+        //监控应用对麦克风硬件的使用
         XposedHelpers.findAndHookMethod(
-                "android.content.ContextWrapper",//要hook的类
+                "android.media.AudioRecord",//要hook的类
                 ClassLoader.getSystemClassLoader(),//获取classLoader
-                "checkCallingOrSelfPermission",//要hook的方法（函数）checkPermission(String var1, int var2, int var3);
-
+                "startRecording",
                 String.class,
-
                 new XC_MethodHook() {
                     //这里是hook回调函数
                     @Override
                     protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-
                         XposedBridge.log("检查权限2:" +param.args[0] );
-
+                        if (param.args[0].toString().contains("PHONE")){
+                            if(context!=null){
+                                Intent intent=new Intent();
+                                intent.setAction("com.example.sec.BroadcastReceiverTest");
+                                intent.setComponent( new ComponentName( "com.example.eunomia" ,
+                                        "com.example.eunomia.MyReceiver") );
+                                intent.putExtra("name", getAppName(context));
+                                intent.putExtra("permission","录音");
+                                context.sendBroadcast(intent);
+                            }
+                        }
+                    }
+                }
+        );
+        //监控应用对摄像机硬件的使用
+        XposedHelpers.findAndHookMethod(
+                "android.hardware.Camera",//要hook的类
+                ClassLoader.getSystemClassLoader(),//获取classLoader
+                "open",
+                String.class,
+                new XC_MethodHook() {
+                    //这里是hook回调函数
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                        XposedBridge.log("检查权限3:" +param.args[0] );
+                        if (param.args[0].toString().contains("CAMERA")){
+                            if(context!=null){
+                                Intent intent=new Intent();
+                                intent.setAction("com.example.sec.BroadcastReceiverTest");
+                                intent.setComponent( new ComponentName( "com.example.eunomia" ,
+                                        "com.example.eunomia.MyReceiver") );
+                                intent.putExtra("name", getAppName(context));
+                                intent.putExtra("permission","相机");
+                                context.sendBroadcast(intent);
+                            }
+                        }
                     }
                 }
         );
         //监控应用对麦克风硬件的使用
-       findAndHookMethod("android.media.AudioRecord", ClassLoader.getSystemClassLoader(),
-               "startRecording",
-        new XC_MethodHook() {
-            @Override
-            protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                XposedBridge.log("=========AUDIO====================");
-                if(context!=null){
-                    Intent intent=new Intent();
-                    intent.setAction("com.example.sec.BroadcastReceiverTest");
-                    intent.setComponent( new ComponentName( "com.example.eunomia" ,
-                            "com.example.eunomia.MyReceiver") );
-                    intent.putExtra("name", getAppName(context));
-                    intent.putExtra("permission","录音");
-                    context.sendBroadcast(intent);
-                }
-            }
-       });
+//       findAndHookMethod("android.media.AudioRecord", ClassLoader.getSystemClassLoader(),
+//               "startRecording",
+//        new XC_MethodHook() {
+//            @Override
+//            protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+//                XposedBridge.log("=========AUDIO====================");
+//                if(context!=null){
+//                    Intent intent=new Intent();
+//                    intent.setAction("com.example.sec.BroadcastReceiverTest");
+//                    intent.setComponent( new ComponentName( "com.example.eunomia" ,
+//                            "com.example.eunomia.MyReceiver") );
+//                    intent.putExtra("name", getAppName(context));
+//                    intent.putExtra("permission","录音");
+//                    context.sendBroadcast(intent);
+//                }
+//            }
+//       });
        //监控应用对摄像机硬件的使用
-        findAndHookMethod("android.hardware.Camera", ClassLoader.getSystemClassLoader(), "open",
-                new XC_MethodHook() {
-                    @Override
-                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                        XposedBridge.log("=========CAMERA====================");
-                        if(context!=null){
-                            Intent intent=new Intent();
-                            intent.setAction("com.example.sec.BroadcastReceiverTest");
-                            intent.setComponent( new ComponentName( "com.example.eunomia" ,
-                                    "com.example.eunomia.MyReceiver") );
-                            intent.putExtra("name", getAppName(context));
-                            intent.putExtra("permission","相机");
-                            context.sendBroadcast(intent);
-                        }
-                    }});
+//        findAndHookMethod("android.hardware.Camera", ClassLoader.getSystemClassLoader(), "open",
+//                new XC_MethodHook() {
+//                    @Override
+//                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+//                        XposedBridge.log("=========CAMERA====================");
+//                        if(context!=null){
+//                            Intent intent=new Intent();
+//                            intent.setAction("com.example.sec.BroadcastReceiverTest");
+//                            intent.setComponent( new ComponentName( "com.example.eunomia" ,
+//                                    "com.example.eunomia.MyReceiver") );
+//                            intent.putExtra("name", getAppName(context));
+//                            intent.putExtra("permission","相机");
+//                            context.sendBroadcast(intent);
+//                        }
+//                    }});
 
 //        findAndHookMethod("android.location.LocationManager", ClassLoader.getSystemClassLoader(), "getLastKnownLocation",
 //                new XC_MethodHook() {
@@ -152,21 +185,6 @@ public class MyHook implements IXposedHookLoadPackage {
     }
 
     }
-
-//public void handleLoadPackage(final XC_LoadPackage.LoadPackageParam lpparam) throws Throwable{
-//    HookMethod(TelephonyManager.class, "getDeviceId", "00000000000000");
-//}
-//    private void HookMethod(final Class clazz, final String method, final String result){
-//        try{
-//            XposedHelpers.findAndHookMethod(clazz, method, new Object[] { new XC_MethodHook() {
-//                protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-//                    param.setResult(result);
-//                }
-//            } });
-//        } catch (Throwable e){
-//            e.printStackTrace();
-//        }
-//    }
 
 
 
