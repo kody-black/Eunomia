@@ -7,6 +7,7 @@ import java.util.List;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.os.Bundle;
@@ -43,6 +44,8 @@ public class MainActivity extends Activity implements OnClickListener {
     public ArrayList<PInfo> can_see_location_info_obj = new ArrayList<>();
     public ArrayList<PInfo> can_camera_audio_obj = new ArrayList<>();
     public ArrayList<PInfo> has_majority = new ArrayList<PInfo>();
+    public static Context monitorContext;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -76,6 +79,7 @@ public class MainActivity extends Activity implements OnClickListener {
                 c.setOnClickListener(something);
             }
         }, 2000);
+        monitorContext = this;
     }
 
     /**

@@ -40,7 +40,7 @@ public class Logs extends Activity implements View.OnClickListener {
         setContentView(R.layout.logs);
         fileHelper=new FileHelper(this);
         try{
-           text = fileHelper.read();
+           text = fileHelper.read("mylog.txt");
         }catch (FileNotFoundException e){
             e.printStackTrace();
         }
@@ -52,7 +52,7 @@ public class Logs extends Activity implements View.OnClickListener {
     }
     @Override
     public void onClick(View arg0) {
-        fileHelper.clear();
+        fileHelper.clear("mylog.txt");
         new Thread(new Runnable() {
             @Override
             public void run() {

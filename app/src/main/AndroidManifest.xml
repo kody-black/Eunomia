@@ -19,6 +19,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <receiver android:name=".BlockReceiver">
+            <intent-filter>
+                <action android:name="com.example.sec.block" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".AgreeReceiver">
+            <intent-filter>
+                <action android:name="com.example.sec.agree" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".InterceptReceiver">
+            <intent-filter>
+                <action android:name="com.example.sec.intercept" />
+            </intent-filter>
+        </receiver>
+
         <receiver
             android:name=".MyReceiver"
             android:enabled="true"
