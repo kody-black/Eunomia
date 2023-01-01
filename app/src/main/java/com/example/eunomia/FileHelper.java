@@ -95,32 +95,6 @@ public class FileHelper {
     }
 
     /**
-     * 用于保存默认允许使用权限的应用列表
-     * @param name
-     * @param permission
-     */
-    public void saveIntercept(String name, String time, String permission){
-        String content = "拦截" + name + "使用权限: " + permission;
-        FileOutputStream fos = null;
-        try {
-            // Context.MODE_PRIVATE私有权限，Context.MODE_APPEND追加写入到已有内容的后面
-            fos = mContext.openFileOutput(blocklog, Context.MODE_APPEND);
-            fos.write(content.getBytes());
-            fos.write("\r\n".getBytes());//写入换行
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (fos != null) {
-                try {
-                    fos.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
-
-    /**
      * 定义文件读取的方法
      */
     public String read(String filename) throws FileNotFoundException {

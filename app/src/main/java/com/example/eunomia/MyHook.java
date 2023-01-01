@@ -72,6 +72,7 @@ public class MyHook implements IXposedHookLoadPackage {
                                     XposedBridge.log("阻止权限:" + param.args[0]);
                                 } else {
                                 //发送广播，让用户选
+                                    param.setResult(PackageManager.PERMISSION_DENIED);
                                     Intent intent = new Intent();
                                     intent.setAction("com.example.sec.BroadcastReceiverTest");
                                     intent.setComponent(new ComponentName("com.example.eunomia",

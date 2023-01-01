@@ -42,52 +42,6 @@ public class MyReceiver extends BroadcastReceiver {
         fileHelper.save(name, time, permission);
     }
 
-    //弹出通知的函数
-//    private void showNotification(Intent intent)
-//    {
-//        String name= intent.getStringExtra("name");
-//        String permission=intent.getStringExtra("permission");
-//        NotificationManager manager = (NotificationManager)context.getSystemService(NOTIFICATION_SERVICE);
-//        Intent intent2=new Intent(context, MainActivity.class);
-//        PendingIntent pendingIntent = PendingIntent.getActivity(context,0,intent2,0);
-//        if(Build.VERSION.SDK_INT >= 26)
-//        {
-//            //当sdk版本大于26
-//            String id = "channel_1";
-//            String description = "222";
-//            int importance = NotificationManager.IMPORTANCE_HIGH;
-//            NotificationChannel channel = new NotificationChannel(id, description, importance);
-////                     channel.enableLights(true);
-//            channel.enableVibration(true);//
-//            channel.setSound(null, Notification.AUDIO_ATTRIBUTES_DEFAULT);
-//
-//            manager.createNotificationChannel(channel);
-//            Notification notification = new NotificationCompat.Builder(context, id)
-////                        .setCategory(Notification.CATEGORY_MESSAGE)
-//                    .setSmallIcon(R.mipmap.ic_launcher)
-//                    .setContentTitle("监控助手")
-//                    .setContentText(name+"使用了"+permission)
-//                    .setContentIntent(pendingIntent)
-//                    .setFullScreenIntent(pendingIntent,true)
-//                    .setAutoCancel(true)
-//                    .setPriority(NotificationManager.IMPORTANCE_HIGH)
-//                    .build();
-//            manager.notify(1, notification);
-//        }
-//        else
-//        {
-//        //当sdk版本小于26
-//        Notification notification = new NotificationCompat.Builder(context)
-//                .setContentTitle("监控助手")
-//                .setContentText(name+"使用了"+permission)
-//                .setContentIntent(pendingIntent)
-//                .setSmallIcon(R.mipmap.ic_launcher)
-//                .setPriority(NotificationManager.IMPORTANCE_HIGH)
-//                .setFullScreenIntent(pendingIntent, true)
-//                .build();
-//        manager.notify(1,notification);
-//    }
-//    }
     private void showNotification(Intent intent) {
         String name = intent.getStringExtra("name");
         String permission = intent.getStringExtra("permission");
@@ -130,33 +84,5 @@ public class MyReceiver extends BroadcastReceiver {
                 .build();
         manager.notify(1, notification);
     }
-//    private void showNotification(Intent intent)
-//    {
-//        String name= intent.getStringExtra("name");
-//        String permission=intent.getStringExtra("permission");
-//        NotificationManager manager = (NotificationManager)context.getSystemService(NOTIFICATION_SERVICE);
-//        //创建意图，用于点击通知后打开 BlockReceiver
-//        Intent intentBlock = new Intent(context, BlockReceiver.class);
-//        PendingIntent pendingIntentBlock = PendingIntent.getBroadcast(context, 0, intentBlock, 0);
-//        //创建意图，用于点击通知后打开 AgreeReceiver
-//        Intent intentAgree = new Intent(context, AgreeReceiver.class);
-//        PendingIntent pendingIntentAgree = PendingIntent.getBroadcast(context, 0, intentAgree, 0);
-//        //创建意图，用于点击通知后打开 InterceptReceiver
-//        Intent intentIntercept = new Intent(context, InterceptReceiver.class);
-//        PendingIntent pendingIntentIntercept = PendingIntent.getBroadcast(context, 0, intentIntercept, 0);
-//        //当sdk版本小于26
-//        Notification notification = new NotificationCompat.Builder(context)
-//                .setContentTitle("监控助手")
-//                .setContentText(name+"使用了"+permission)
-//                .addAction(R.mipmap.ic_launcher, "阻止", pendingIntentBlock)  //添加阻止按钮
-//                .addAction(R.mipmap.ic_launcher, "同意", pendingIntentAgree)  //添加同意按钮
-//                .addAction(R.mipmap.ic_launcher, "拦截", pendingIntentIntercept)  //添加拦截按钮
-//                .setSmallIcon(R.mipmap.ic_launcher)
-//                .setPriority(NotificationManager.IMPORTANCE_HIGH)
-//                .build();
-//        manager.notify(1,notification);
-//    }
-
-
 }
 
